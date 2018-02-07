@@ -47,13 +47,9 @@ definitions:
 ##
 type: "object"
 properties:
-  schema:
-    description: "An optional reference to this package descriptor schema."
+  descriptor_schema:
+    description: "Reference to the schema corresponding to the descriptor (e.g., URL or local path)."
     type: "string"
-  descriptor_version:
-    description: "The version of the descriptor schema used."
-    type: "string"
-    pattern: "^[A-Za-z0-9\\-_.]+$"
   vendor:
     description: "The vendor id will identify the package uniquely across all package."
     type: "string"
@@ -89,7 +85,7 @@ properties:
 #
 
 required:
-  - "descriptor_version"
+  - "descriptor_schema"
   - "vendor"
   - "name"
   - "version"

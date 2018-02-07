@@ -6,7 +6,7 @@ version: 0.9
 description: |
   The NFV advanced package descriptor schema specifies
   the structure  of the package descriptor. It makes sure
-  the relevantinformation is provided to parse the package
+  the relevant information is provided to parse the package
   in a meaningful way.
 
 ##
@@ -18,13 +18,9 @@ properties:
   ## Some general information regarding the schema used to describe
   ## the package descriptor.
   ##
-  schema:
-    description: "An optional reference to this package descriptor schema."
+  descriptor_schema:
+    description: "Reference to the schema corresponding to the descriptor (e.g., URL or local path)."
     type: "string"
-  descriptor_version:
-    description: "The version of the descriptor schema used."
-    type: "string"
-    pattern: "^[A-Za-z0-9\\-_.]+$"
 
   ##
   ## Some general information that describes the package as such.
@@ -108,7 +104,7 @@ properties:
     uniqueItems: true
 
 required:
-  - "descriptor_version"
+  - "descriptor_schema"
   - "vendor"
   - "name"
   - "version"

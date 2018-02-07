@@ -1,5 +1,6 @@
 ---
-descriptor_version: "0.9"
+descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/ref-schema.yml"
+
 name: "mycloudimage"
 vendor: "eu.5gtango"
 version: "16.04"

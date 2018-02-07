@@ -1,5 +1,5 @@
 ---
-descriptor_version: "1.0"
+descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/function-descriptor/vnfd-schema.yml"
 
 vendor: "eu.5gtango"
 name: "myvnf"

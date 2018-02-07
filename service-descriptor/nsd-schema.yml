@@ -1,11 +1,11 @@
 ---
 $schema: "http://json-schema.org/draft-04/schema#"
-#id: "http://www.sonata-nfv.eu/schema/nsd-schema-02-recursive"
-description: "The core scheme for RECUSRIVE service descriptors (many details left out)"
+title: "Network Service Descriptor Schema"
+version: 0.9
+description: "The core schema for network service descriptors (supports recursive network services)"
 
-##
-## Some definitions used later on.
-##
+
+# definitions used later
 definitions:
   connection_point_types:
     enum:
@@ -17,24 +17,14 @@ definitions:
       - "ethernet"
       - "ipv4"
       - "ipv6"
+  
 
-##
-## The actual document description.
-##
+# actual schema of NSDs
 type: "object"
-# Ensure that the NS includes VNFs or NSs (recursive) or both, ie, a network_functions or network_services section
-# If a network_functions or network_services section is included, it needs to contain 1+ VNF or NS, respectively
-# Is this check wanted? simplest-example.yml doesn't include any VNF or NS...
-# anyOf:
-  # - required:
-    # - network_functions
-  # - required:
-    # - network_services
 properties:
-  descriptor_version:
-    description: "The version of the description definition used to describe the network descriptor."
+  descriptor_schema:
+    description: "Reference to the schema corresponding to the descriptor (e.g., URL or local path)."
     type: "string"
-    pattern: "^[A-Za-z0-9\\-_.]+$"
   vendor:
     description: "The vendor id allows to identify a VNF descriptor uniquely across all function descriptor vendors."
     type: "string"
@@ -53,6 +43,10 @@ properties:
   description:
     description: "A longer description of the network service."
     type: "string"
+  logo:
+    description: "Path to service logo."
+    type: "string"
+    pattern: "^[A-Za-z0-9\\-_./]+$"
   licences:
     description: "Information on the licence of this NSD."
     type: "array"
@@ -411,8 +405,25 @@ properties:
                 type: "string"
       action: 
         type: "string"
+        
+  # tags to select network service for correct tests later (eg, latency tests)
+  testing_tags:
+    type: "array"
+    items:
+      type: "string"
+    uniqueItems: true
+    
+  # soft constraints by developer, eg, proximity constraints
+  soft_constraints:
+    type: "array"
+    items:
+      type: "string"
+      pattern: "[A-Za-z0-9\\-_.:]+"
+    uniqueItems: true
+  
+  
 required: 
-  - descriptor_version
+  - descriptor_schema
   - vendor 
   - name
   - version

@@ -5,19 +5,16 @@
 ## @author Stefan Schneider
 ##
 ---
-descriptor_version: "1.0"
+# this descriptor always points to the newest schema on GitHub
+descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/service-descriptor/nsd-schema.yml"
 
 vendor: "eu.tango-nfv.service-descriptor"
 name: "recursive-sonata"
 version: "0.1"
 author: "Stefan Schneider, Paderborn University"
-description: >
-  "Example recursive network service reusing the sonata-demo NS and adding a vTC at the beginning."
+description: "Example recursive network service reusing the sonata-demo NS and adding a vTC at the beginning."
 
-##
-## The various network functions this service
-## is composed of.
-##
+# This service uses an extra vTC VNF in addition to the Sonata NS (see below)
 network_functions:
   - vnf_id: "vnf_vtc"
     vnf_vendor: "eu.sonata-nfv"
@@ -107,3 +104,11 @@ forwarding_graphs:
           - connection_point_ref: "output"
             position: 6
 
+# Testing tags to select appropriate tests in the V&V
+testing_tags:
+  - "latency"
+  - "throughput"
+  
+# Soft constraints asking for proximity of the VNF and the reused NS (just as an example)
+soft_constraints:
+  - "proximity:vnf_vtc-ns_sonata"

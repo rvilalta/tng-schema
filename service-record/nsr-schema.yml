@@ -1,6 +1,7 @@
 ---
 $schema: "http://json-schema.org/draft-04/schema#"
 #id: "http://www.sonata-nfv.eu/schema/nsd-schema-02-recursive"
+version: 0.9
 description: "The core scheme for RECUSRIVE service record (many details left out)"
 
 ##
@@ -70,6 +71,10 @@ properties:
     description: "The version of the service record. Can be used to track changes."
     type: "string"
     pattern: "^[0-9]+$"
+  logo:
+    description: "Path to service logo."
+    type: "string"
+    pattern: "^[A-Za-z0-9\\-_./]+$"
   status:
     description: "The current status of the Service"
     enum:
